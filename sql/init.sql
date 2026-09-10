@@ -26,9 +26,6 @@ DROP TABLE IF EXISTS roles;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
--- =============================================================================
--- 1. TABLA: ROLES
--- =============================================================================
 CREATE TABLE roles (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL UNIQUE COMMENT 'administrador, estudiante, reclutador',
@@ -36,9 +33,6 @@ CREATE TABLE roles (
     creado_en DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================================
--- 2. TABLA: INSTITUCIONES (Universidades o Empresas/Startups)
--- =============================================================================
 CREATE TABLE instituciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(150) NOT NULL UNIQUE,
@@ -49,9 +43,6 @@ CREATE TABLE instituciones (
     creado_en DATETIME DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================================
--- 3. TABLA: CARRERAS
--- =============================================================================
 CREATE TABLE carreras (
     id INT AUTO_INCREMENT PRIMARY KEY,
     institucion_id INT NOT NULL,
@@ -63,9 +54,6 @@ CREATE TABLE carreras (
     CONSTRAINT uk_inst_carrera UNIQUE (institucion_id, nombre)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================================
--- 4. TABLA: USUARIOS (Soporte para bandera autorizado_publicar)
--- =============================================================================
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -91,9 +79,6 @@ CREATE TABLE usuarios (
     INDEX idx_usuarios_autorizado (autorizado_publicar)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================================
--- 5. TABLA: SOLICITUDES_PUBLICACION (Flujo de aprobación para publicar ofertas)
--- =============================================================================
 CREATE TABLE solicitudes_publicacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
@@ -112,9 +97,6 @@ CREATE TABLE solicitudes_publicacion (
     INDEX idx_solicitudes_estado (estado, fecha_solicitud)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================================
--- 6. TABLA: OPORTUNIDADES (Feed de publicaciones)
--- =============================================================================
 CREATE TABLE oportunidades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -140,9 +122,6 @@ CREATE TABLE oportunidades (
     INDEX idx_feed_oportunidades (estado, carrera_id, fecha_publicacion DESC)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================================
--- 7. TABLA: POSTULACIONES (Módulo de Aplicaciones)
--- =============================================================================
 CREATE TABLE postulaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     oportunidad_id INT NOT NULL,
@@ -161,9 +140,7 @@ CREATE TABLE postulaciones (
     INDEX idx_postulaciones_estado (estado)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- =============================================================================
--- 8. TABLA: HISTORIAL_ESTADO_POSTULACION (Seguimiento de estados)
--- =============================================================================
+
 CREATE TABLE historial_estado_postulacion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     postulacion_id INT NOT NULL,
@@ -180,9 +157,6 @@ CREATE TABLE historial_estado_postulacion (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
--- =============================================================================
--- 9. TABLA: NOTIFICACIONES
--- =============================================================================
 CREATE TABLE notificaciones (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
