@@ -18,7 +18,7 @@ final readonly class SolicitudPublicacion
         int $usuario_id,
         string $nombre_organizacion_proyecto,
         string $descripcion_actividades,
-        ?string $documento_respaldo_url = null,
+        string $documento_respaldo_url,
         string $estado = 'pendiente',
         ?string $comentario_admin = null,
         ?int $revisado_por = null,
@@ -27,6 +27,15 @@ final readonly class SolicitudPublicacion
         ?int $id = null
     ) {
         $this->id = $id;
+        if($usuario_id <=0){
+            throw new InvalidArgumentException('El id no puede ser negativo o 0.');
+        }
+        if ($nombre_organizacion_proyecto <= 2){
+            throw new InvalidArgumentException('El nombre de la organizacion es invalido.');
+        }
+        if (strlen($descripcion_actividades) <= 12){
+            throw new InvalidArgumentException("Debes dar una mejor descripcion de tus actividades");
+        }
         $this->usuario_id = $usuario_id;
         $this->nombre_organizacion_proyecto = $nombre_organizacion_proyecto;
         $this->descripcion_actividades = $descripcion_actividades;
@@ -36,5 +45,6 @@ final readonly class SolicitudPublicacion
         $this->revisado_por = $revisado_por;
         $this->fecha_solicitud = $fecha_solicitud ?? date('Y-m-d H:i:s');
         $this->fecha_revision = $fecha_revision;
+
     }
 }

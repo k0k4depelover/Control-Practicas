@@ -19,10 +19,15 @@ final readonly class Notificacion
         ?int $id = null
     ) {
         $this->id = $id;
-        $this->usuario_id = $usuario_id;
+
         if (strlen($titulo) <= 2 || strlen($mensaje) <= 5) {
             throw new InvalidArgumentException("El formato de la notificacion es invalido");
         }
+        if ($usuario_id <= 0){
+            throw new InvalidArgumentException("El ID de usuario no puede ser negativo ni 0.");
+        }
+
+        $this->usuario_id = $usuario_id;
         $this->titulo = $titulo;
         $this->mensaje = $mensaje;
         $this->link_accion = $link_accion;

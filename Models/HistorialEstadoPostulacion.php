@@ -18,6 +18,9 @@ final readonly class HistorialEstadoPostulacion
         ?string $fecha = null,
         ?int $id = null
     ) {
+        if ($postulacion_id <= 0){
+            throw new InvalidArgumentException("El id de la publicacion no puede ser negativo ni 0.");
+        }
         $this->id = $id;
         $this->postulacion_id = $postulacion_id;
         $this->estado_anterior = $estado_anterior;

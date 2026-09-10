@@ -23,6 +23,9 @@ final readonly class Postulacion
         ?int $id = null
     ) {
         $this->id = $id;
+        if ($oportunidad_id <=0 || $estudiante_id <= 0) {
+            throw new InvalidArgumentException('El id no puede ser negativo o 0.');
+        }
         $this->oportunidad_id = $oportunidad_id;
         $this->estudiante_id = $estudiante_id;
         $this->cv_url = $cv_url;

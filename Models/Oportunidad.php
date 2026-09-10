@@ -35,10 +35,15 @@ final readonly class Oportunidad
         ?int $id = null
     ) {
 
-    if (strlen($titulo) <= 3) {
-        throw new InvalidArgumentException('El formato de la publicacion es invalido');
-    }
         $this->id = $id;
+        if (strlen($titulo) <= 3) {
+            throw new InvalidArgumentException('El formato de la publicacion es invalido');
+        }
+
+        if ($carrera_id<=0 || $institucion_id<= 0) {
+            throw new InvalidArgumentException("El id no puede ser negativo o 0.");
+        }
+
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
         $this->fecha_publicacion = $fecha_publicacion;

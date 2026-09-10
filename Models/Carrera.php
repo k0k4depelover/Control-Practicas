@@ -17,11 +17,15 @@ final readonly class Carrera
         ?int $id = null
     ) {
         $this->id = $id;
-        $this->institucion_id = $institucion_id;
 
+
+        if ($institucion_id <= 0) {
+            throw new InvalidArgumentException("El id no puede ser 0 o negativo");
+        }
         if(strlen($nombre) <= 2) {
             throw new InvalidArgumentException("El nombre debe tener una logitud de almenos 3 caracteres");
         }
+        $this->institucion_id = $institucion_id;
         $this->nombre = $nombre;
         $this->codigo = $codigo;
         $this->creado_en = $creado_en ?? date('Y-m-d H:i:s');
