@@ -1,29 +1,34 @@
 <?php
 declare(strict_types=1);
-class Notificacion
+
+class Postulacion
 {
     public ?int $id;
-    public int $usuario_id;
-    public string $titulo;
-    public string $mensaje;
-    public ?string $link_accion;
-    public bool $leido;
-    public ?string $fecha_creacion;
+    public int $oportunidad_id;
+    public int $estudiante_id;
+    public string $cv_url;
+    public string $estado;
+    public ?string $constancia_estudios_url;
+    public ?string $mensaje_presentacion;
+    public ?string $fecha_postulacion;
+
     public function __construct(
-        int $usuario_id,
-        string $titulo,
-        string $mensaje,
-        ?string $link_accion = null,
-        bool $leido = false,
-        ?string $fecha_creacion = null,
+        int $oportunidad_id,
+        int $estudiante_id,
+        string $cv_url,
+        string $estado = 'pendiente',
+        ?string $constancia_estudios_url = null,
+        ?string $mensaje_presentacion = null,
+        ?string $fecha_postulacion = null,
         ?int $id = null
     ) {
         $this->id = $id;
-        $this->usuario_id = $usuario_id;
-        $this->titulo = $titulo;
-        $this->mensaje = $mensaje;
-        $this->link_accion = $link_accion;
-        $this->leido = $leido;
-        $this->fecha_creacion = $fecha_creacion ?? date('Y-m-d H:i:s');
+        $this->oportunidad_id = $oportunidad_id;
+        $this->estudiante_id = $estudiante_id;
+        $this->cv_url = $cv_url;
+        $this->estado = $estado;
+        $this->constancia_estudios_url = $constancia_estudios_url;
+        $this->mensaje_presentacion = $mensaje_presentacion;
+        $this->fecha_postulacion = $fecha_postulacion ?? date('Y-m-d H:i:s');
     }
 }
