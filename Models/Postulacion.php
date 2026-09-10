@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-class Postulacion
+final readonly class Postulacion
 {
     public ?int $id;
     public int $oportunidad_id;

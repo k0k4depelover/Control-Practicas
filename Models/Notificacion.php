@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-class Notificacion
+final readonly class Notificacion
 {
     public ?int $id;
     public int $usuario_id;
@@ -20,6 +20,9 @@ class Notificacion
     ) {
         $this->id = $id;
         $this->usuario_id = $usuario_id;
+        if (strlen($titulo) <= 2 || strlen($mensaje) <= 5) {
+            throw new InvalidArgumentException("El formato de la notificacion es invalido");
+        }
         $this->titulo = $titulo;
         $this->mensaje = $mensaje;
         $this->link_accion = $link_accion;

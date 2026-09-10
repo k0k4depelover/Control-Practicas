@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-class Oportunidad
+final readonly class Oportunidad
 {
     public ?int $id;
     public string $titulo;
@@ -34,6 +34,10 @@ class Oportunidad
         bool $visto = false,
         ?int $id = null
     ) {
+
+    if (strlen($titulo) <= 3) {
+        throw new InvalidArgumentException('El formato de la publicacion es invalido');
+    }
         $this->id = $id;
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;

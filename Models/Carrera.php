@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-class Carrera
+final readonly class Carrera
 {
     public ?int $id;
     public int $institucion_id;
@@ -18,6 +18,10 @@ class Carrera
     ) {
         $this->id = $id;
         $this->institucion_id = $institucion_id;
+
+        if(strlen($nombre) <= 2) {
+            throw new InvalidArgumentException("El nombre debe tener una logitud de almenos 3 caracteres");
+        }
         $this->nombre = $nombre;
         $this->codigo = $codigo;
         $this->creado_en = $creado_en ?? date('Y-m-d H:i:s');

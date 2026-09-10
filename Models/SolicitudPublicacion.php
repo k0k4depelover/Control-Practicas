@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-class SolicitudPublicacion
+final readonly class SolicitudPublicacion
 {
     public ?int $id;
     public int $usuario_id;
     public string $nombre_organizacion_proyecto;
     public string $descripcion_actividades;
-    public ?string $documento_respaldo_url;
+    public string $documento_respaldo_url;
     public string $estado;
     public ?string $comentario_admin;
     public ?int $revisado_por;

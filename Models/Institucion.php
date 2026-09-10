@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-class Institucion
+final readonly class Institucion
 {
     public ?int $id;
     public string $nombre;
@@ -20,6 +20,9 @@ class Institucion
         ?string $creado_en = null,
         ?int $id = null
     ) {
+        if (strlen($nombre) <= 2) {
+            throw new InvalidArgumentException('El nombre de la empresa debe tener al menos 3 caracteres de longitud');
+        }
         $this->id = $id;
         $this->nombre = $nombre;
         $this->tipo = $tipo;
