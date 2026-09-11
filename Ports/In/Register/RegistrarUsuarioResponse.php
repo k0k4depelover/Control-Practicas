@@ -4,7 +4,7 @@ declare(strict_types= 1);
 namespace App\Application\Port\In;
 
 // DTO de Salida .
-final readonly class RegistrarUsuarioCommand{
+final readonly class RegistrarUsuarioCommandResponse{
   public function __construct(
       public string $username,
       public string $email,
