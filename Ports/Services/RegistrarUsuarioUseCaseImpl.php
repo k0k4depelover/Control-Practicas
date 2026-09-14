@@ -1,9 +1,14 @@
 <?php
+declare(strict_types=1);
+
+namespace App\Application\Service;
 
 use App\Application\Port\In\RegistrarUsuarioCommandRequest;
-use App\Application\Port\In\RegistrarUserCommandResponse;
-use App\Application\Port\Out\UsuarioRepositoryInterface;
+use App\Application\Port\In\RegistrarUsuarioCommandResponse;
 use App\Application\Port\In\RegistrarUsuarioUseCaseInterface;
+use App\Application\Port\Out\UsuarioRepositoryInterface;
+use App\Domain\Model\Usuario;
+use DomainException;
 
 final readonly class RegistrarUsuarioServicioImp implements RegistrarUsuarioUseCaseInterface
 {
@@ -11,9 +16,8 @@ final readonly class RegistrarUsuarioServicioImp implements RegistrarUsuarioUseC
         private UsuarioRepositoryInterface $usuarioRepository
     ) {}
 
-    public function execute(RegistrarUsuarioCommandRequest $request): RegistrarUserCommandResponse
+    public function execute(RegistrarUsuarioCommandRequest $request): RegistrarUsuarioCommandResponse
     {
-        // 1. Validaciones de negocio contra infraestructura
         if ($this->usuarioRepository->findByEmail($request->email) !== null) {
             throw new DomainException("El email {$request->email} ya está en uso.");
         }
@@ -22,24 +26,24 @@ final readonly class RegistrarUsuarioServicioImp implements RegistrarUsuarioUseC
             throw new DomainException("El nombre de usuario {$request->username} ya existe.");
         }
 
-        // 2. Hasheo previo a crear la entidad
-        $passwordHash = password_hash($request->passwordPlana, PASSWORD_DEFAULT);
+        $password_hash = password_hash($request->password_hash, PASSWORD_DEFAULT);
 
-        // 3. Creación de entidad (aquí se disparan las validaciones del modelo)
         $usuario = new Usuario(
             username: $request->username,
             nombre: $request->nombre,
             email: $request->email,
-            password_hash: $passwordHash,
-            rol_id: $request->rolId,
-            carnet: $request->carnet,
+            password_hash: $password_hash,
+            rol_id: 1,
             institucion_id: $request->institucionId,
             carrera_id: $request->carreraId,
-            telefono: $request->telefono
+            carnet: $request->carnet,
+            telefono: $request->telefono,
+            biografia: $request->biografia,
+            autorizado_publicar: false,
         );
 
         $this->usuarioRepository->save($usuario);
 
-        return new RegistrarUserCommandResponse($usuario->id, 'Usuario registrado con éxito');
+        return new RegistrarUsuarioCommandResponse($usuario->id, 'Usuario registrado con éxito');
     }
 }

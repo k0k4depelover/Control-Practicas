@@ -7,5 +7,5 @@ use App\Application\Port\In\RegistrarUsuarioCommandResponse;
 use App\Application\Port\In\RegistrarUsuarioCommandRequest;
 interface RegistrarUsuarioUseCaseInterface
 {
-  public function execute(RegistrarUsuarioRequest $request): RegistrarUsuarioCommandResponse;
+  public function execute(RegistrarUsuarioCommandRequest $request): RegistrarUsuarioCommandResponse;
 }
