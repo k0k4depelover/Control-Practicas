@@ -1,6 +1,6 @@
 <?php
 declare(strict_types= 1);
-namespace App\Port\Service;
+namespace App\Port\Services;
 use App\Domain\Model\Usuario;
 
 

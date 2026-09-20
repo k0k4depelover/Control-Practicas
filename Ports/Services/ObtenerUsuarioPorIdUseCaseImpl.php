@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Ports\Services;
+namespace App\Port\Services;
 
 use App\Domain\Models\Usuario;
 use App\Ports\In\Usuario\Obtener\ObtenerUsuarioPorIdUseCaseInterface;
