@@ -1,7 +1,7 @@
 <?php
 declare(strict_types= 1);
 
-namespace App\Application\Port\In;
+namespace App\Port\In\Registrar;
 
 use App\Application\Port\In\RegistrarUsuarioCommandResponse;
 use App\Application\Port\In\RegistrarUsuarioCommandRequest;

@@ -1,19 +1,20 @@
 <?php
 declare(strict_types=1);
+namespace App\Ports\Services;
 
-namespace App\Application\Service;
-
-use App\Application\Port\In\RegistrarUsuarioCommandRequest;
-use App\Application\Port\In\RegistrarUsuarioCommandResponse;
-use App\Application\Port\In\RegistrarUsuarioUseCaseInterface;
-use App\Application\Port\Out\UsuarioRepositoryInterface;
 use App\Domain\Model\Usuario;
+use App\Ports\In\Usuario\Registrar\RegistrarUsuarioCommandRequest;
+use App\Ports\In\Usuario\Registrar\RegistrarUsuarioCommandResponse;
+use App\Ports\In\Usuario\Registrar\RegistrarUsuarioUseCaseInterface;
+use App\Ports\Out\PasswordHasherInterface;
+use App\Ports\Out\UserRepositoryInterface;
 use DomainException;
 
-final readonly class RegistrarUsuarioServicioImp implements RegistrarUsuarioUseCaseInterface
+final readonly class RegistrarUsuarioUseCaseImpl implements RegistrarUsuarioUseCaseInterface
 {
     public function __construct(
-        private UsuarioRepositoryInterface $usuarioRepository
+        private UserRepositoryInterface $usuarioRepository,
+        private PasswordHasherInterface $passwordHasher
     ) {}
 
     public function execute(RegistrarUsuarioCommandRequest $request): RegistrarUsuarioCommandResponse
@@ -26,13 +27,14 @@ final readonly class RegistrarUsuarioServicioImp implements RegistrarUsuarioUseC
             throw new DomainException("El nombre de usuario {$request->username} ya existe.");
         }
 
-        $password_hash = password_hash($request->password_hash, PASSWORD_DEFAULT);
+        // Delegamos el hash al puerto, sin funciones globales directas
+        $passwordHash = $this->passwordHasher->hash($request->password);
 
         $usuario = new Usuario(
             username: $request->username,
             nombre: $request->nombre,
             email: $request->email,
-            password_hash: $password_hash,
+            password_hash: $passwordHash,
             rol_id: 1,
             institucion_id: $request->institucionId,
             carrera_id: $request->carreraId,
