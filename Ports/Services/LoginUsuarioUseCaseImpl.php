@@ -23,8 +23,21 @@ final readonly class LoginUseCaseImpl implements LoginUseCaseInterface
 
   public function execute(LoginCommandRequest $command): LoginCommandResponse{
 
-       // Pendiente a implementar
+       if (filter_var($command->identifier, FILTER_VALIDATE_EMAIL) ){
+          $user_request = $this->usuarioRepositoryInterface->findByEmail($command->identifier);
+        }
+        else{
+          $user_request = $this->usuarioRepository->findByEmail($command->identifier);
+        }
+      if($user_request === null){
+        throw new DomainException("Credenciales invalidas");
+      }
 
+      $isValido= $this->passwordHasher->verify($command->password, $user_request->password_hash);
+      if($isValido === false){
+        throw new DomainException("Credenciales invalidas");
+      }
 
+      return new LoginCommandResponse($user_request->id, $user_request->username);
   }
 }
