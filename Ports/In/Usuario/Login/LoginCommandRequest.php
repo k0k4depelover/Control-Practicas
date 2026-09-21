@@ -7,6 +7,8 @@ final readonly class LoginCommandRequest
 {
     public function __construct(
         public string $identifier,  // Para que se pueda usar username o mail.
-        public string $password
+        public string $password,
+        public ?string $userAgent = null,
+        public ?string $ipAddress = null
     ) {}
 }

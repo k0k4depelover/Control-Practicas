@@ -169,3 +169,15 @@ CREATE TABLE notificaciones (
         REFERENCES usuarios(id) ON DELETE CASCADE ON UPDATE CASCADE,
     INDEX idx_notificaciones_usuario (usuario_id, leido)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE sesiones_usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    refresh_token_hash VARCHAR(255) NOT NULL UNIQUE,
+    user_agent VARCHAR(255) NULL,
+    ip_address VARCHAR(45) NULL,
+    expira_en DATETIME NOT NULL,
+    revocado TINYINT(1) DEFAULT 0,
+    creado_en DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_sesiones_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
