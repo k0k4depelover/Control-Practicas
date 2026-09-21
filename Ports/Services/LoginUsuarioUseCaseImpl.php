@@ -48,7 +48,7 @@ final readonly class LoginUseCaseImpl implements LoginUseCaseInterface
       $refreshTokenHash= hash('sha256', $refreshToken);
       $fechaExpiracion=(new Date()->modify('+30 days'));
 
-      $this->sessionRepository->save($user_request->id, $accessToken, $refreshTokenHash, $command->userAgent, $command->direccionIP, $fechaExpiracion);
+      $this->sessionRepository->save($user_request->id, $refreshTokenHash, $command->user_agent, $command->direccion_ip, $fechaExpiracion);
       return new LoginCommandResponse($user_request->id, $user_request->username, $user_request->rol_id, $refreshToken, 900);
   }
 }
