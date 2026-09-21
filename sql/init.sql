@@ -175,7 +175,7 @@ CREATE TABLE sesiones_usuario (
     usuario_id INT NOT NULL,
     refresh_token_hash VARCHAR(255) NOT NULL UNIQUE,
     user_agent VARCHAR(255) NULL,
-    ip_address VARCHAR(45) NULL,
+    direccion_ip VARCHAR(45) NULL,
     expira_en DATETIME NOT NULL,
     revocado TINYINT(1) DEFAULT 0,
     creado_en DATETIME DEFAULT CURRENT_TIMESTAMP,

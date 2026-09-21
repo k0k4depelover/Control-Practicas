@@ -8,6 +8,7 @@ final readonly class LoginCommandResponse
     public function __construct(
         public int $userId,
         public string $username,
-        public string $token // O token JWT, ID de sesión, etc.
-    ) {}
+        public int $rol_id,
+        public string $token,
+        public int $expiraEn){}
 }

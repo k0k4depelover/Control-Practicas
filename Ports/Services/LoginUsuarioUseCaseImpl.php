@@ -13,6 +13,7 @@ use App\Ports\Out\TokenManagerInterface;
 use App\Ports\Out\UsuarioRepositoryInterface;
 use App\Ports\Out\SessionRepositoryInterface;
 
+use DateTime;
 use DomainException;
 
 
@@ -45,7 +46,9 @@ final readonly class LoginUseCaseImpl implements LoginUseCaseInterface
       $accessToken = $this->tokenManager->generateAccessToken($user_request->id, $user_request->username, $user_request->rol_id);
       $refreshToken= $this->tokenManager->generateRefreshToken();
       $refreshTokenHash= hash('sha256', $refreshToken);
+      $fechaExpiracion=(new Date()->modify('+30 days'));
 
-      return new LoginCommandResponse($user_request->id, $user_request->username);
+      $this->sessionRepository->save($user_request->id, $accessToken, $refreshTokenHash, $command->userAgent, $command->direccionIP, $fechaExpiracion);
+      return new LoginCommandResponse($user_request->id, $user_request->username, $user_request->rol_id, $refreshToken, 900);
   }
 }
