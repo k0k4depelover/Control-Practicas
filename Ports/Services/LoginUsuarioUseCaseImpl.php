@@ -33,7 +33,7 @@ final readonly class LoginUseCaseImpl implements LoginUseCaseInterface
           $user_request = $this->usuarioRepositoryInterface->findByEmail($command->identifier);
         }
         else{
-          $user_request = $this->usuarioRepository->findByEmail($command->identifier);
+          $user_request = $this->usuarioRepository->findByUsername($command->identifier);
         }
       if($user_request === null){
         throw new DomainException("Credenciales invalidas");
