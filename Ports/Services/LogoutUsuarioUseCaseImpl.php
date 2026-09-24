@@ -19,7 +19,7 @@ final readonly class LogoutUsuarioUseCaseImpl implements LogoutUseCaseInterface 
 
     $tokenHash= hash('sha256', $rawRefreshToken);
 
-    $this->sessionRepository->revocarPorTokenHash($tokenHash);
+    $this->sessionRepository->revoke($tokenHash);
       
   }
 
