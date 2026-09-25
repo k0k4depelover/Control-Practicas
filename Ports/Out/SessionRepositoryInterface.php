@@ -3,7 +3,12 @@ declare(strict_types=1);
 
 namespace App\Ports\Out;
 
+use App\Domain\Models\SesionUsuario;
+use DateTime;
+
 interface SessionRepositoryInterface{
+  public function findByRefreshTokenHash(string $refreshTokenHash): ?SesionUsuario;
+
   public function save(int $usuarioId,
         string $refreshTokenHash,
         DateTime $expiraEn,

@@ -1,19 +1,19 @@
 <?php
 declare(strict_types= 1);
 
-namespace App\Port\In\Registrar;
+namespace App\Ports\In\Usuario\Registrar;
 
-// DTO de Salida .
+// DTO de Entrada .
 final readonly class RegistrarUsuarioCommandRequest{
   public function __construct(
-        string $username,
-        string $nombre,
-        string $email,
-        string $password_hash,
-        ?int $institucion_id = null,
-        ?int $carrera_id = null,
-        string $carnet,
-        ?string $telefono = null,
-        ?string $biografia = null,
+        public string $username,
+        public string $nombre,
+        public string $email,
+        public string $password,
+        public string $carnet,
+        public ?int $institucion_id = null,
+        public ?int $carrera_id = null,
+        public ?string $telefono = null,
+        public ?string $biografia = null,
   ){}
 }

@@ -13,6 +13,7 @@ USE control_practicas_db;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP TABLE IF EXISTS sesiones_usuario;
 DROP TABLE IF EXISTS notificaciones;
 DROP TABLE IF EXISTS mensajes_postulacion;
 DROP TABLE IF EXISTS historial_estado_postulacion;
@@ -45,6 +46,7 @@ CREATE TABLE instituciones (
 
 CREATE TABLE carreras (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    institucion_id INT NOT NULL,
     nombre VARCHAR(150) NOT NULL,
     codigo VARCHAR(30) NULL,
     creado_en DATETIME DEFAULT CURRENT_TIMESTAMP,

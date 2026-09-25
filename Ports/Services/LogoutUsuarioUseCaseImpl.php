@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Ports\Services;
 use App\Ports\In\Usuario\Logout\LogoutUseCaseInterface;
-use App\Ports\Out\SesionRepositoryInterface;
+use App\Ports\Out\SessionRepositoryInterface;
 use DomainException;
 
 final readonly class LogoutUsuarioUseCaseImpl implements LogoutUseCaseInterface {
@@ -12,7 +12,7 @@ final readonly class LogoutUsuarioUseCaseImpl implements LogoutUseCaseInterface 
     private SessionRepositoryInterface $sessionRepository
   ){}
 
-  public function execute(string $rawRefreshToken){
+  public function execute(string $rawRefreshToken): void {
     if(trim($rawRefreshToken) === ''){
       throw new DomainException("No se proporciono el token de refresco");
     }

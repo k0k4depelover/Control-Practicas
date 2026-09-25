@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace App\Domain\Model;
+namespace App\Domain\Models;
+
+use InvalidArgumentException;
 
 final readonly class SolicitudPublicacion
 {
@@ -31,7 +33,7 @@ final readonly class SolicitudPublicacion
         if($usuario_id <=0){
             throw new InvalidArgumentException('El id no puede ser negativo o 0.');
         }
-        if ($nombre_organizacion_proyecto <= 2){
+        if (strlen($nombre_organizacion_proyecto) <= 2){
             throw new InvalidArgumentException('El nombre de la organizacion es invalido.');
         }
         if (strlen($descripcion_actividades) <= 12){

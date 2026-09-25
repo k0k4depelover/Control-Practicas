@@ -1,5 +1,7 @@
 <?php
-namespace App\Domain\Model;
+namespace App\Domain\Models;
+
+use InvalidArgumentException;
 final readonly class AsignacionRol{
   public int $usuario_id;
   public int $rol_id;

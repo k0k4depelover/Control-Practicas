@@ -1,15 +1,18 @@
 <?php
 declare(strict_types= 1);
-namespace App\Port\Services;
-use App\Domain\Model\Usuario;
+namespace App\Ports\Services;
+use App\Domain\Models\Usuario;
+use App\Ports\In\Usuario\Obtener\ObtenerUsuarioPorNombreUseCaseInterface;
+use App\Ports\Out\UserRepositoryInterface;
+use DomainException;
 
 
 final readonly class ObtenerUsuarioPorNombreUseCaseImpl implements ObtenerUsuarioPorNombreUseCaseInterface{
 
     public function __construct(
-        private UsuarioRepositoryInterface $usuarioRepository
+        private UserRepositoryInterface $usuarioRepository
     ) {}
-  public function execute(String $username): ?Usuario{
+  public function execute(string $username): Usuario{
 
     if(strlen($username) <= 2){
       throw new DomainException("El nombre de usuario a buscar es muy corto");

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Ports\In\Usuario\Refresh;
+namespace App\Ports\In\Usuario\Token;
 
 interface RefrescarTokenUseCaseInterface
 {

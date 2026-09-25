@@ -1,7 +1,7 @@
 <?php
 declare(strict_types= 1);
 
-namespace App\Port\In\Registrar;
+namespace App\Ports\In\Usuario\Registrar;
 
 // DTO de Salida .
 final readonly class RegistrarUsuarioCommandResponse{
@@ -10,6 +10,6 @@ final readonly class RegistrarUsuarioCommandResponse{
       public string $email,
       public bool $autorizado_publicar,
       public string $nombre,
-      public string $institucion,
+      public ?int $institucion_id,
   ){}
 }

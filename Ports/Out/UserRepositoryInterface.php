@@ -1,11 +1,11 @@
 <?php
 declare(strict_types= 1);
 
-namespace App\Port\Out;
+namespace App\Ports\Out;
 
-use App\Domain\Model\Usuario;
+use App\Domain\Models\Usuario;
 
-interface UsuarioRepositoryInterface{
+interface UserRepositoryInterface{
   public function save(Usuario $user): void;
   public function findByUsername(string $username): ?Usuario;
   public function findByEmail(string $email): ?Usuario;

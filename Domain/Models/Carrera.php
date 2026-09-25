@@ -1,9 +1,12 @@
 <?php
 declare(strict_types=1);
-namespace App\Domain\Model;
+namespace App\Domain\Models;
+
+use InvalidArgumentException;
 final readonly class Carrera
 {
     public ?int $id;
+    public int $institucion_id;
     public string $nombre;
     public ?string $codigo;
     public ?string $creado_en;
@@ -20,6 +23,7 @@ final readonly class Carrera
         if(strlen($nombre) <= 2) {
             throw new InvalidArgumentException("El nombre debe tener una logitud de almenos 3 caracteres");
         }
+        $this->institucion_id = $institucion_id;
         $this->nombre = $nombre;
         $this->codigo = $codigo;
         $this->creado_en = $creado_en ?? date('Y-m-d H:i:s');

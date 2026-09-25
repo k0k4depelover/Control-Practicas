@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace App\Domain\Model;
+namespace App\Domain\Models;
+
+use InvalidArgumentException;
 final readonly class Oportunidad
 {
     public ?int $id;
@@ -40,7 +42,7 @@ final readonly class Oportunidad
             throw new InvalidArgumentException('El formato de la publicacion es invalido');
         }
 
-        if ($carrera_id<=0 || $institucion_id<= 0) {
+        if (($carrera_id !== null && $carrera_id <= 0) || ($institucion_id !== null && $institucion_id <= 0)) {
             throw new InvalidArgumentException("El id no puede ser negativo o 0.");
         }
 

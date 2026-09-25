@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
-namespace App\Port\Services;
+namespace App\Ports\Services;
 
-use App\Domain\Model\Usuario;
+use App\Domain\Models\Usuario;
 use App\Ports\In\Usuario\Registrar\RegistrarUsuarioCommandRequest;
 use App\Ports\In\Usuario\Registrar\RegistrarUsuarioCommandResponse;
 use App\Ports\In\Usuario\Registrar\RegistrarUsuarioUseCaseInterface;
@@ -36,8 +36,8 @@ final readonly class RegistrarUsuarioUseCaseImpl implements RegistrarUsuarioUseC
             email: $request->email,
             password_hash: $passwordHash,
             rol_id: 1,
-            institucion_id: $request->institucionId,
-            carrera_id: $request->carreraId,
+            institucion_id: $request->institucion_id,
+            carrera_id: $request->carrera_id,
             carnet: $request->carnet,
             telefono: $request->telefono,
             biografia: $request->biografia,
@@ -46,6 +46,12 @@ final readonly class RegistrarUsuarioUseCaseImpl implements RegistrarUsuarioUseC
 
         $this->usuarioRepository->save($usuario);
 
-        return new RegistrarUsuarioCommandResponse($usuario->id, 'Usuario registrado con éxito');
+        return new RegistrarUsuarioCommandResponse(
+            username: $usuario->username,
+            email: $usuario->email,
+            autorizado_publicar: $usuario->autorizado_publicar,
+            nombre: $usuario->nombre,
+            institucion_id: $usuario->institucion_id,
+        );
     }
 }

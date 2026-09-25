@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Domain\Model;
+namespace App\Domain\Models;
 
-use App\Domain\Model\Enum\EstadoUsuario;
+use App\Domain\Enums\EstadosUsuario;
 use DateTime;
 use InvalidArgumentException;
 
@@ -21,7 +21,7 @@ class Usuario
     public ?string $telefono;
     public ?string $biografia;
     public bool $autorizado_publicar;
-    public EstadoUsuario $estado;
+    public EstadosUsuario $estado;
     public DateTime $fecha_registro;
 
     public function __construct(
@@ -36,7 +36,7 @@ class Usuario
         ?string $telefono = null,
         ?string $biografia = null,
         bool $autorizado_publicar = false,
-        EstadoUsuario $estado = EstadoUsuario::ACTIVO,
+        EstadosUsuario $estado = EstadosUsuario::ACTIVO,
         ?DateTime $fecha_registro = null,
         ?int $id = null
     ) {
