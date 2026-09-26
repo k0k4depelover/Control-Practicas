@@ -33,4 +33,39 @@ final readonly class Institucion
         $this->sitio_web = $sitio_web;
         $this->creado_en = $creado_en ?? date('Y-m-d H:i:s');
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function nombre(): string
+    {
+        return $this->nombre;
+    }
+
+    public function siglas(): ?string
+    {
+        return $this->siglas;
+    }
+
+    public function tipo(): string
+    {
+        return $this->tipo;
+    }
+
+    public function contacto_email(): ?string
+    {
+        return $this->contacto_email;
+    }
+
+    public function sitio_web(): ?string
+    {
+        return $this->sitio_web;
+    }
+
+    public function creado_en(): ?string
+    {
+        return $this->creado_en;
+    }
 }

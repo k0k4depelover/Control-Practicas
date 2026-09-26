@@ -32,4 +32,39 @@ final readonly class HistorialEstadoPostulacion
         $this->comentario = $comentario;
         $this->fecha = $fecha ?? date('Y-m-d H:i:s');
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function postulacion_id(): int
+    {
+        return $this->postulacion_id;
+    }
+
+    public function estado_anterior(): string
+    {
+        return $this->estado_anterior;
+    }
+
+    public function estado_nuevo(): string
+    {
+        return $this->estado_nuevo;
+    }
+
+    public function actualizado_por(): int
+    {
+        return $this->actualizado_por;
+    }
+
+    public function comentario(): ?string
+    {
+        return $this->comentario;
+    }
+
+    public function fecha(): ?string
+    {
+        return $this->fecha;
+    }
 }

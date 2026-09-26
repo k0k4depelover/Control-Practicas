@@ -50,4 +50,54 @@ final readonly class SolicitudPublicacion
         $this->fecha_revision = $fecha_revision;
 
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function usuario_id(): int
+    {
+        return $this->usuario_id;
+    }
+
+    public function nombre_organizacion_proyecto(): string
+    {
+        return $this->nombre_organizacion_proyecto;
+    }
+
+    public function descripcion_actividades(): string
+    {
+        return $this->descripcion_actividades;
+    }
+
+    public function documento_respaldo_url(): string
+    {
+        return $this->documento_respaldo_url;
+    }
+
+    public function estado(): string
+    {
+        return $this->estado;
+    }
+
+    public function comentario_admin(): ?string
+    {
+        return $this->comentario_admin;
+    }
+
+    public function revisado_por(): ?int
+    {
+        return $this->revisado_por;
+    }
+
+    public function fecha_solicitud(): ?string
+    {
+        return $this->fecha_solicitud;
+    }
+
+    public function fecha_revision(): ?string
+    {
+        return $this->fecha_revision;
+    }
 }

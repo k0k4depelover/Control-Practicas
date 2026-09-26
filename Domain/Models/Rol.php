@@ -25,4 +25,24 @@ final readonly class Rol
         $this->descripcion = $descripcion;
         $this->creado_en = $creado_en ?? date('Y-m-d H:i:s');
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function nombre(): string
+    {
+        return $this->nombre;
+    }
+
+    public function descripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function creado_en(): ?string
+    {
+        return $this->creado_en;
+    }
 }

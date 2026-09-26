@@ -36,4 +36,44 @@ final readonly class Postulacion
         $this->mensaje_presentacion = $mensaje_presentacion;
         $this->fecha_postulacion = $fecha_postulacion ?? date('Y-m-d H:i:s');
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function oportunidad_id(): int
+    {
+        return $this->oportunidad_id;
+    }
+
+    public function estudiante_id(): int
+    {
+        return $this->estudiante_id;
+    }
+
+    public function cv_url(): string
+    {
+        return $this->cv_url;
+    }
+
+    public function estado(): string
+    {
+        return $this->estado;
+    }
+
+    public function constancia_estudios_url(): ?string
+    {
+        return $this->constancia_estudios_url;
+    }
+
+    public function mensaje_presentacion(): ?string
+    {
+        return $this->mensaje_presentacion;
+    }
+
+    public function fecha_postulacion(): ?string
+    {
+        return $this->fecha_postulacion;
+    }
 }

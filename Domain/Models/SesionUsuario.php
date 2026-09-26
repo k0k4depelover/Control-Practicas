@@ -44,4 +44,44 @@ class SesionUsuario
         $this->revocado = $revocado;
         $this->creado_en = $creado_en ?? new DateTimeImmutable();
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function usuario_id(): int
+    {
+        return $this->usuario_id;
+    }
+
+    public function refresh_token_hash(): string
+    {
+        return $this->refresh_token_hash;
+    }
+
+    public function user_agent(): ?string
+    {
+        return $this->user_agent;
+    }
+
+    public function ip_address(): ?string
+    {
+        return $this->ip_address;
+    }
+
+    public function expira_en(): DateTimeImmutable
+    {
+        return $this->expira_en;
+    }
+
+    public function revocado(): bool
+    {
+        return $this->revocado;
+    }
+
+    public function creado_en(): DateTimeImmutable
+    {
+        return $this->creado_en;
+    }
 }

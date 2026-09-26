@@ -60,4 +60,74 @@ final readonly class Oportunidad
         $this->creado_en = $creado_en ?? date('Y-m-d H:i:s');
         $this->visto = $visto;
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function titulo(): string
+    {
+        return $this->titulo;
+    }
+
+    public function descripcion(): string
+    {
+        return $this->descripcion;
+    }
+
+    public function requisitos(): ?string
+    {
+        return $this->requisitos;
+    }
+
+    public function institucion_id(): ?int
+    {
+        return $this->institucion_id;
+    }
+
+    public function carrera_id(): ?int
+    {
+        return $this->carrera_id;
+    }
+
+    public function modalidad(): string
+    {
+        return $this->modalidad;
+    }
+
+    public function ubicacion(): ?string
+    {
+        return $this->ubicacion;
+    }
+
+    public function fecha_publicacion(): string
+    {
+        return $this->fecha_publicacion;
+    }
+
+    public function fecha_cierre(): string
+    {
+        return $this->fecha_cierre;
+    }
+
+    public function estado(): string
+    {
+        return $this->estado;
+    }
+
+    public function creado_por(): int
+    {
+        return $this->creado_por;
+    }
+
+    public function creado_en(): ?string
+    {
+        return $this->creado_en;
+    }
+
+    public function visto(): bool
+    {
+        return $this->visto;
+    }
 }

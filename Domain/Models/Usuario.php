@@ -12,6 +12,7 @@ class Usuario
     public ?int $id;
     public string $username;
     public string $nombre;
+    public string $apellido;
     public string $email;
     public string $password_hash;
     public int $rol_id;
@@ -27,6 +28,7 @@ class Usuario
     public function __construct(
         string $username,
         string $nombre,
+        string $apellido,
         string $email,
         string $password_hash,
         int $rol_id,
@@ -43,6 +45,10 @@ class Usuario
         if (strlen($nombre) <= 2) {
             throw new InvalidArgumentException('La longitud del nombre es muy corta');
         }
+
+        if (strlen($apellido) <= 2) {
+            throw new InvalidArgumentException('La longitud del apellido es muy corta');
+        }
         if (strlen($username) <= 3) {
             throw new InvalidArgumentException('La longitud del username no es valida');
         }
@@ -56,6 +62,7 @@ class Usuario
         $this->id = $id;
         $this->username = $username;
         $this->nombre = $nombre;
+        $this->apellido = $apellido;
         $this->email = strtolower(trim($email));
         $this->password_hash = $password_hash;
         $this->rol_id = $rol_id;
@@ -67,5 +74,80 @@ class Usuario
         $this->autorizado_publicar = $autorizado_publicar;
         $this->estado = $estado;
         $this->fecha_registro = $fecha_registro ?? new DateTime();
+    }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function username(): string
+    {
+        return $this->username;
+    }
+
+    public function nombre(): string
+    {
+        return $this->nombre;
+    }
+
+    public function apellido(): string
+    {
+        return $this->apellido;
+    }
+
+    public function email(): string
+    {
+        return $this->email;
+    }
+
+    public function password_hash(): string
+    {
+        return $this->password_hash;
+    }
+
+    public function rol_id(): int
+    {
+        return $this->rol_id;
+    }
+
+    public function institucion_id(): ?int
+    {
+        return $this->institucion_id;
+    }
+
+    public function carrera_id(): ?int
+    {
+        return $this->carrera_id;
+    }
+
+    public function carnet(): ?string
+    {
+        return $this->carnet;
+    }
+
+    public function telefono(): ?string
+    {
+        return $this->telefono;
+    }
+
+    public function biografia(): ?string
+    {
+        return $this->biografia;
+    }
+
+    public function autorizado_publicar(): bool
+    {
+        return $this->autorizado_publicar;
+    }
+
+    public function estado(): EstadosUsuario
+    {
+        return $this->estado;
+    }
+
+    public function fecha_registro(): DateTime
+    {
+        return $this->fecha_registro;
     }
 }

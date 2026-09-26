@@ -12,4 +12,14 @@ final readonly class AsignacionRol{
     $this->usuario_id = $usuario_id;
     $this->rol_id = $rol_id;
 }
+
+  public function usuario_id(): int
+  {
+    return $this->usuario_id;
+  }
+
+  public function rol_id(): int
+  {
+    return $this->rol_id;
+  }
 }

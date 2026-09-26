@@ -37,4 +37,39 @@ final readonly class Notificacion
         $this->leido = $leido;
         $this->fecha_creacion = $fecha_creacion ?? date('Y-m-d H:i:s');
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function usuario_id(): int
+    {
+        return $this->usuario_id;
+    }
+
+    public function titulo(): string
+    {
+        return $this->titulo;
+    }
+
+    public function mensaje(): string
+    {
+        return $this->mensaje;
+    }
+
+    public function link_accion(): ?string
+    {
+        return $this->link_accion;
+    }
+
+    public function leido(): bool
+    {
+        return $this->leido;
+    }
+
+    public function fecha_creacion(): ?string
+    {
+        return $this->fecha_creacion;
+    }
 }

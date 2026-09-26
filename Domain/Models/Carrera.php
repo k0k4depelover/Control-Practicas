@@ -28,4 +28,29 @@ final readonly class Carrera
         $this->codigo = $codigo;
         $this->creado_en = $creado_en ?? date('Y-m-d H:i:s');
     }
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function institucion_id(): int
+    {
+        return $this->institucion_id;
+    }
+
+    public function nombre(): string
+    {
+        return $this->nombre;
+    }
+
+    public function codigo(): ?string
+    {
+        return $this->codigo;
+    }
+
+    public function creado_en(): ?string
+    {
+        return $this->creado_en;
+    }
 }

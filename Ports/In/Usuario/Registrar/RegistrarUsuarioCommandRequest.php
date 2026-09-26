@@ -8,6 +8,7 @@ final readonly class RegistrarUsuarioCommandRequest{
   public function __construct(
         public string $username,
         public string $nombre,
+        public string $apellido,
         public string $email,
         public string $password,
         public string $carnet,
